@@ -3,6 +3,16 @@ import { Input, ButtonInput } from 'react-bootstrap'
 import styles from './ConnectForm.module.css'
 import { reduxForm } from 'redux-form'
 
+const validate = values => {
+  const errors = {}
+
+  if (!values.userName) {
+    errors.userName = 'username is required'
+  }
+
+  return errors
+}
+
 class ConnectForm extends Component {
   static propTypes = {
     fields: React.PropTypes.object.isRequired,
@@ -19,22 +29,40 @@ class ConnectForm extends Component {
           <h4>to a Battleship Peer Server</h4>
           <br />
           <form onSubmit={handleSubmit}>
-            <Input
-              type='text'
-              label='Username'
-              placeholder='Enter your username'
-              {...userName}
-            />
+            {(() => {
+              if (userName.touched && userName.error) {
+                return (
+                  <Input
+                    type='text'
+                    label='Username'
+                    placeholder='Enter your username'
+                    bsStyle='error'
+                    hasFeedback
+                    {...userName}
+                  />
+                )
+              }
+
+              return (
+                <Input
+                  type='text'
+                  label='Username'
+                  placeholder='Enter your username'
+                  hasFeedback
+                  {...userName}
+                />
+              )
+            })()}
             <Input
               type='text'
               label='Server Hostname'
-              placeholder='Enter server hostname'
+              placeholder='Default: ricardofbarros.me'
               {...host}
             />
             <Input
               type='text'
               label='Server Port'
-              placeholder='Enter server port'
+              placeholder='Default: 9000'
               {...port}
             />
             <ButtonInput type='submit' bsStyle='primary' value='Connect' onClick={handleSubmit} />
@@ -47,5 +75,6 @@ class ConnectForm extends Component {
 
 export default reduxForm({
   form: 'connect',
-  fields: ['userName', 'host', 'port']
+  fields: ['userName', 'host', 'port'],
+  validate
 })(ConnectForm)
