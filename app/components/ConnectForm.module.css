@@ -1,0 +1,18 @@
+.container {
+  width: 300px;
+  margin: 0 auto;
+  color: white;
+}
+
+.container h2 {
+  font-size: 5rem;
+}
+
+.container h2, .container h4 {
+  text-align: center;
+}
+
+.container form {
+  width: 220px;
+  margin: 0 auto;
+}
