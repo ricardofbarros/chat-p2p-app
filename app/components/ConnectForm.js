@@ -1,20 +1,16 @@
 import React, { Component } from 'react'
 import { Input, ButtonInput } from 'react-bootstrap'
 import styles from './ConnectForm.module.css'
+import { reduxForm } from 'redux-form'
 
 class ConnectForm extends Component {
   static propTypes = {
-    connectionObj: React.PropTypes.shape({
-      host: React.PropTypes.string.isRequired,
-      port: React.PropTypes.string.isRequired,
-      userName: React.PropTypes.string.isRequired
-    }),
-    onClick: React.PropTypes.func.isRequired,
-    onChange: React.PropTypes.func.isRequired
+    fields: React.PropTypes.object.isRequired,
+    handleSubmit: React.PropTypes.func.isRequired
   }
 
   render () {
-    let onClick = this.props.onClick.bind(null, this.props.connectionObj)
+    const {fields: {userName, host, port}, handleSubmit} = this.props
 
     return (
       <div>
@@ -22,32 +18,26 @@ class ConnectForm extends Component {
           <h2>Connect</h2>
           <h4>to a Battleship Peer Server</h4>
           <br />
-          <form>
+          <form onSubmit={handleSubmit}>
             <Input
               type='text'
               label='Username'
-              name='userName'
               placeholder='Enter your username'
-              onChange={this.props.onChange}
-              value={this.props.connectionObj.userName}
+              {...userName}
             />
             <Input
               type='text'
               label='Server Hostname'
-              name='host'
               placeholder='Enter server hostname'
-              onChange={this.props.onChange}
-              value={this.props.connectionObj.host}
+              {...host}
             />
             <Input
               type='text'
               label='Server Port'
-              name='port'
               placeholder='Enter server port'
-              onChange={this.props.onChange}
-              value={this.props.connectionObj.port}
+              {...port}
             />
-            <ButtonInput type='submit' bsStyle='primary' value='Connect' onClick={onClick} />
+            <ButtonInput type='submit' bsStyle='primary' value='Connect' onClick={handleSubmit} />
           </form>
         </div>
       </div>
@@ -55,4 +45,7 @@ class ConnectForm extends Component {
   }
 }
 
-export default ConnectForm
+export default reduxForm({
+  form: 'connect',
+  fields: ['userName', 'host', 'port']
+})(ConnectForm)
