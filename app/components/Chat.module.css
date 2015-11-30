@@ -1,5 +1,82 @@
-.container {
+.triangleBorderLeft, .triangleBorderRight {
+  position:relative;
+  padding:15px;
+  margin:1em 0 3em;
+  border:5px solid #337ab7;
+  color:#333;
+  background:#fff;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
 
+.triangleBorderLeft {
+  margin-left:30px;
+}
+
+.triangleBorderRight {
+  margin-right:30px;
+}
+
+.triangleBorderLeft:before, .triangleBorderRight:before  {
+  content:"";
+  position:absolute;
+  bottom:-20px; /* value = - border-top-width - borderBottom-width */
+  left:40px; /* controls horizontal position */
+  border-width:20px 20px 0;
+  border-style:solid;
+  border-color:#337ab7 transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+/* creates the smaller  triangle */
+.triangleBorderLeft:after, .triangleBorderRight:after {
+  content:"";
+  position:absolute;
+  bottom:-13px;
+  left:47px;
+  border-width:13px 13px 0;
+  border-style:solid;
+  border-color:#fff transparent;
+  display:block;
+  width:0;
+}
+
+.triangleBorderLeft:before {
+  top:10px; /* controls vertical position */
+  bottom:auto;
+  left:-30px; /* value = - border-left-width - border-right-width */
+  border-width:15px 30px 15px 0;
+  border-color:transparent #337ab7;
+}
+
+.triangleBorderLeft:after {
+  top:16px; /* value = (:before top) + (:before border-top) - (:after border-top) */
+  bottom:auto;
+  left:-21px; /* value = - border-left-width - border-right-width */
+  border-width:9px 21px 9px 0;
+  border-color:transparent #fff;
+}
+
+.triangleBorderRight:before {
+  top:10px; /* controls vertical position */
+  bottom:auto;
+  left:auto;
+  right:-30px; /* value = - border-left-width - border-right-width */
+  border-width:15px 0 15px 30px;
+  border-color:transparent #337ab7;
+}
+
+.triangleBorderRight:after {
+  top:16px; /* value = (:before top) + (:before border-top) - (:after border-top) */
+  bottom:auto;
+  left:auto;
+  right:-21px; /* value = - border-left-width - border-right-width */
+  border-width:9px 0 9px 21px;
+  border-color:transparent #fff;
 }
 
 .msgForm {
@@ -18,4 +95,10 @@
 
 .msgForm form button {
   width: 78px;
+}
+
+.person {
+  position: absolute;
+  top: 0px;
+  font-weight: bold;
 }

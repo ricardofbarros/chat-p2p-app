@@ -29,9 +29,19 @@ class Chat extends Component {
   }
 
   renderMessage (msgObj) {
+    let personId = this.props.params.personId
+    let style
+
+    if (personId === msgObj.personId) {
+      style = styles.triangleBorderLeft
+    } else {
+      style = styles.triangleBorderRight
+    }
+
     return (
-      <li key={uuid.v4()}>
-        {msgObj.personId} says: {msgObj.msg}
+      <li className={style} key={uuid.v4()}>
+        <span className={styles.person}>{msgObj.personId} says:</span>
+        {msgObj.msg}
       </li>
     )
   }
@@ -40,7 +50,7 @@ class Chat extends Component {
     let messages = this.props.messages
 
     return (
-      <div className={styles.container}>
+      <div>
         <div>
           <ul>
             {messages.map(msgObj => this.renderMessage(msgObj))}
