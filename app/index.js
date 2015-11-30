@@ -1,6 +1,5 @@
 import './app.css'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'regenerator/runtime'
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'

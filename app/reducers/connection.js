@@ -1,8 +1,7 @@
 import {
   CONNECT_USER_SUCCESS,
   CONNECT_USER_FAIL,
-  CONNECTION_RESET,
-  GENERATE_USER_ID
+  CONNECTION_RESET
 } from '../actions/connect'
 
 export const initialState = {
@@ -25,11 +24,6 @@ function connection (state = initialState, action) {
     case CONNECTION_RESET:
       return Object.assign({}, state, {
         peer: {}
-      })
-
-    case GENERATE_USER_ID:
-      return Object.assign({}, state, {
-        userId: action.payload
       })
 
     default:

@@ -1,12 +1,10 @@
 import Peer from 'peerjs'
 import Rx from 'rx'
-import uuid from 'uuid'
 import handleChat from '../api/handleChat'
 
 export const CONNECT_USER_SUCCESS = 'CONNECT_USER_SUCCESS'
 export const CONNECT_USER_FAIL = 'CONNECT_USER_FAIL'
 export const CONNECTION_RESET = 'CONNECTION_RESET'
-export const GENERATE_USER_ID = 'GENERATE_USER_ID'
 
 export function connectUser (data) {
   let peer = new Peer(data.userId, {
@@ -66,17 +64,10 @@ function connectUserFail (err) {
   }
 }
 
-export function generateUserId () {
-  return {
-    type: GENERATE_USER_ID,
-    payload: uuid.v4()
-  }
-}
-
 export function resetConnection () {
   return {
     type: CONNECTION_RESET
   }
 }
 
-export default { generateUserId, connectUser, resetConnection }
+export default { connectUser, resetConnection }

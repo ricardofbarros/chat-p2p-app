@@ -1,0 +1,21 @@
+.container {
+
+}
+
+.msgForm {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+.msgForm form div {
+  display: inline-block;
+  width: 80%;
+  margin-right: 20px;
+}
+
+.msgForm form button {
+  width: 78px;
+}

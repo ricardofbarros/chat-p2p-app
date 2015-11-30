@@ -3,6 +3,7 @@ import { Table, ButtonInput } from 'react-bootstrap'
 import ChatRequest from './Modals/ChatRequest'
 import ChatRequested from './Modals/ChatRequested'
 import styles from './Lobby.module.css'
+import uuid from 'uuid'
 
 let defaultState = {
   showChatRequest: false,
@@ -66,7 +67,6 @@ class Lobby extends Component {
     let self = this
     return () => {
       self.props.createNewChat(personId, self.props.peer)
-      // self.props.history.pushState(null, '/chat/' + personId)
     }
   }
 
@@ -88,7 +88,7 @@ class Lobby extends Component {
 
   drawEmptyRow () {
     return (
-      <tr>
+      <tr key={uuid.v4()}>
         <td className={styles.empty}></td>
         <td className={styles.empty}></td>
         <td className={styles.empty}></td>

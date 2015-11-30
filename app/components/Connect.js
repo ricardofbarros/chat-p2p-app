@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import ConnectForm from '../components/ConnectForm'
+import ConnectForm from './Forms/ConnectForm'
+import uuid from 'uuid'
 import styles from './Connect.module.css'
 
 class Connect extends Component {
 
   static propTypes = {
-    generateUserId: PropTypes.func.isRequired,
     connectUser: PropTypes.func.isRequired,
     resetConnection: PropTypes.func.isRequired,
     host: PropTypes.string,
@@ -13,10 +13,6 @@ class Connect extends Component {
     userId: PropTypes.string,
     peer: PropTypes.any,
     history: PropTypes.any
-  }
-
-  componentDidMount () {
-    this.props.generateUserId()
   }
 
   componentWillReceiveProps (nextProps) {
@@ -57,7 +53,9 @@ class Connect extends Component {
       connectionObj.port = 9000
     }
 
-    connectionObj.userId = this.props.userId
+    if (!connectionObj.userId) {
+      connectionObj.userId = uuid.v4()
+    }
 
     this.props.connectUser(connectionObj)
   }

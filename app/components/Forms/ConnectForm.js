@@ -9,10 +9,16 @@ class ConnectForm extends Component {
   }
 
   render () {
-    const {fields: {host, port}, handleSubmit} = this.props
+    const {fields: {userId, host, port}, handleSubmit} = this.props
 
     return (
       <form onSubmit={handleSubmit}>
+        <Input
+          type='text'
+          label='Name'
+          placeholder='Default: Random uuid'
+          {...userId}
+        />
         <Input
           type='text'
           label='Server Hostname'
@@ -33,5 +39,5 @@ class ConnectForm extends Component {
 
 export default reduxForm({
   form: 'connect',
-  fields: ['userName', 'host', 'port']
+  fields: ['userId', 'host', 'port']
 })(ConnectForm)
