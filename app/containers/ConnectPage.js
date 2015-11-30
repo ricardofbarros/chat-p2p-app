@@ -7,7 +7,6 @@ function mapStateToProps (state) {
   return {
     host: state.connection.host,
     port: state.connection.port,
-    userName: state.connection.userName,
     userId: state.connection.userId,
     peer: state.connection.peer
   }

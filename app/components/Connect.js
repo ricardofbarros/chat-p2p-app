@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import ConnectForm from '../components/ConnectForm'
+import styles from './Connect.module.css'
 
 class Connect extends Component {
 
   static propTypes = {
-    connectUser: PropTypes.func.isRequired,
     generateUserId: PropTypes.func.isRequired,
+    connectUser: PropTypes.func.isRequired,
     resetConnection: PropTypes.func.isRequired,
     host: PropTypes.string,
-    port: PropTypes.any,
-    userName: PropTypes.string,
+    port: PropTypes.number,
     userId: PropTypes.string,
-    peer: PropTypes.any
+    peer: PropTypes.any,
+    history: PropTypes.any
   }
 
   componentDidMount () {
@@ -27,7 +28,11 @@ class Connect extends Component {
 
     // Connection succeed
     if (typeof nextProps.peer.connect === 'function') {
-
+      this.props.history.pushState({
+        host: nextProps.host,
+        port: nextProps.port,
+        userId: nextProps.userId
+      }, '/lobby')
     }
   }
 
@@ -45,19 +50,28 @@ class Connect extends Component {
     // TODO: Spin animation
 
     if (!connectionObj.host) {
-      connectionObj.host = 'ricardofbarros.me'
+      connectionObj.host = 'localhost'
     }
 
     if (!connectionObj.port) {
       connectionObj.port = 9000
     }
 
+    connectionObj.userId = this.props.userId
+
     this.props.connectUser(connectionObj)
   }
 
   render () {
     return (
-      <ConnectForm onSubmit={this.connect.bind(this)} />
+      <div>
+        <div className={styles.container}>
+          <h2>Connect</h2>
+          <h4>to a P2P chat</h4>
+          <br />
+          <ConnectForm onSubmit={this.connect.bind(this)} />
+        </div>
+      </div>
     )
   }
 }
