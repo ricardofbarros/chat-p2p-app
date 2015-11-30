@@ -1,0 +1,46 @@
+.container {
+  padding-top: 15px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.container th {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.container td {
+  background-color: white;
+}
+
+.container th, .container td {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.container th,
+.container thead,
+.container thead tr,
+.container table,
+.container td {
+  border: 0 !important;
+  border-radius: 6px;
+}
+
+.container table tbody td {
+  vertical-align: middle;
+}
+
+.tdAction {
+  background-color: transparent !important;
+  text-align: center;
+}
+
+.tdAction div {
+  margin-bottom: 0px !important;
+  display: inline-block;
+}
+
+.empty {
+  background: none !important;
+}
