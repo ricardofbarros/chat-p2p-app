@@ -21,7 +21,7 @@ class ChatRequest extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button bsStyle='success' onClick={this.props.acceptFn}>Accept</Button>
-          <Button bsStyle='error' onClick={this.props.denyFn}>Decline</Button>
+          <Button bsStyle='danger' onClick={this.props.denyFn}>Decline</Button>
         </Modal.Footer>
       </Modal>
     )
