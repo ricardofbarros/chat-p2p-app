@@ -16,7 +16,7 @@ export const initialState = {
   messages: OrderedSet()
 }
 
-export default function connect (state = initialState, action) {
+export default function chat (state = initialState, action) {
   switch (action.type) {
     case SEND_CHAT_REQUEST:
       return Object.assign({}, state, {
